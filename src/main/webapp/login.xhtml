@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+      <h:head>
+      	<h:outputStylesheet library="css" name="estilos.css"></h:outputStylesheet>
+      </h:head>
+      
+      <h:body>
+      	
+      	<h:outputLabel value="Hola desde JSF"></h:outputLabel>
+      	
+      	<h:form>
+      	
+      		<h:panelGrid columns="2" id="formLogin">
+      			
+      			<h:outputLabel value="Usuario:" styleClass="colorUser"></h:outputLabel>
+      			<h:inputText id="txtUser" value="#{loginController.usuario}"></h:inputText>
+      			
+      			<h:outputLabel value="Contraseña"></h:outputLabel>
+      			<h:inputSecret id="txtPass" value="#{loginController.password}"></h:inputSecret>
+      			
+      			<h:commandButton value="Ingresar" action="#{loginController.mostrar}"></h:commandButton>
+      		
+      		</h:panelGrid>
+      	
+      	</h:form>
+      	
+      </h:body>
+</html>
