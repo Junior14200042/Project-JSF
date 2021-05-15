@@ -1,3 +1,15 @@
 .colorUser{
-	color:red;
+	
+}
+.headerTable {
+	text-align: center;
+	color: green;
+	background: none repeat scroll 0 0 #E5E5E5;
+	border-bottom: 1px solid #BBBBBB;
+	padding :16px;
+}
+.rowTable{
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFF;
+	color:blue;
 }
