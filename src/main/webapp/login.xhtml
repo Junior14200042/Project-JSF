@@ -1,6 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+      
       
       <h:head>
       	<h:outputStylesheet library="css" name="estilos.css"></h:outputStylesheet>
@@ -9,22 +11,27 @@
       <h:body>
       	
       	<h:outputLabel value="Hola desde JSF"></h:outputLabel>
+      	<div class="ui-fluid">
+	      	<h:form>
+	      		<p:growl id="growl" />
+	      		<p:panel style="text-align:center">
+	      		
+	      			<p:graphicImage name="img/bmw.png" width="15%"/>
+		      		<p:panelGrid id="pnlLoginGrid" columns="1" columClasses="ui-g-12 ui-md-12,ui-g-12 ui-md-12" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+		      			
+		      			<p:outputLabel value="Usuario:" styleClass="colorUser" style="float:left"></p:outputLabel>
+		      			<p:inputText id="txtUser" value="#{loginController.usuario}" required="true" requiredMessage="Usuario Requerido"></p:inputText>
+		      			
+		      			<p:outputLabel value="Contraseña" style="float:left"></p:outputLabel>
+		      			<p:password id="txtPass" value="#{loginController.password}" required="true" requiredMessage="Contraseña Requerida"></p:password>
+		      			
+		      			<p:outputLabel></p:outputLabel>
+		      			<p:commandButton value="Ingresar" action="#{loginController.mostrar}" update="pnlLoginGrid, growl" style="float:left"></p:commandButton>
+	      			</p:panelGrid>
+	      		</p:panel>
+	      	</h:form>
+	      </div>
       	
-      	<h:form>
-      	
-      		<h:panelGrid columns="2" id="formLogin">
-      			
-      			<h:outputLabel value="Usuario:" styleClass="colorUser"></h:outputLabel>
-      			<h:inputText id="txtUser" value="#{loginController.usuario}"></h:inputText>
-      			
-      			<h:outputLabel value="Contraseña"></h:outputLabel>
-      			<h:inputSecret id="txtPass" value="#{loginController.password}"></h:inputSecret>
-      			
-      			<h:commandButton value="Ingresar" action="#{loginController.mostrar}"></h:commandButton>
-      		
-      		</h:panelGrid>
-      	
-      	</h:form>
       	
       </h:body>
 </html>

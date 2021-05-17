@@ -1,37 +1,77 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
       
       <h:head>
       		<h:outputStylesheet library="css" name="estilos.css"></h:outputStylesheet>
+      		<meta name="viewport" content="width=device-width, user-scalable=no"></meta>
       </h:head>
       
       <h:body>
-      	<h:outputLabel value="Bienvenido"></h:outputLabel>
-      	
-      	<h:dataTable id="tblEmpleados" var="empleado" value="#{principalController.empleados}" headerClass="headerTable" rowClasses="rowTable">
-      		<h:column>
-      			<f:facet name="header">Name</f:facet>
-      			<h:outputText value="#{empleado.name}"></h:outputText>
-      		</h:column>
-      		<h:column>
-      			<f:facet name="header">First Name</f:facet>
-      			<h:outputText value="#{empleado.firstName}"></h:outputText>
-      		</h:column>
-      		<h:column>
-      			<f:facet name="header">Last Name</f:facet>
-      			<h:outputText value="#{empleado.lastName}"></h:outputText>
-      		</h:column>
-      		<h:column>
-      			<f:facet name="header">Post</f:facet>
-      			<h:outputText value="#{empleado.post}"></h:outputText>
-      		</h:column>
-      		<h:column>
-      			<f:facet name="header">Status</f:facet>
-      			<h:outputText value="HABILITADO" rendered="#{empleado.status}"></h:outputText>
-      			<h:outputText value="INHABILITADO" rendered="#{!empleado.status}"></h:outputText>
-      		</h:column>
-      	</h:dataTable>
-      
+       
+     	 <h:form>    
+     	 	<div style="float:right; padding-bottom:20px">
+     	 		
+     	 		<h:commandButton value="Cerrar Sesion" action="#{sessionClosedController.cerrarSession}"></h:commandButton>
+     	 	</div>
+     	 	
+     	 	<p:outputLabel value="Bienvenido #{usuarioController.usuarioDTO.usuario} a la pantalla principal"></p:outputLabel>
+     	 	
+	      	<p:dataTable id="tblEmpleados" var="empleado" value="#{principalController.empleados}" paginator="true" rows="5" reflow="true"
+	      				 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+	      				 currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+	                     rowsPerPageTemplate="5,10,{ShowAll|'100'}" widgetVar="customerTable" emptyMessage="No se encontró resultados" filteredValue="#{principalController.empleadosFilter}">
+	                     
+	            <f:facet name="{Exporters}">
+	            	<div style="float:right">
+                <h:commandLink>
+                	<p:graphicImage name="img/excel.png" width="24"></p:graphicImage>
+                    <p:dataExporter type="xls" target="tblEmpleados" fileName="Empleados"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                	<p:graphicImage name="img/xlsx.png" width="24"></p:graphicImage>
+                    <p:dataExporter type="xlsxstream" target="tblEmpleados" fileName="Empleados"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                	<p:graphicImage name="img/pdf.png" width="24"></p:graphicImage>
+                    <p:dataExporter type="pdf" target="tblEmpleados" fileName="Empleados"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                	<p:graphicImage name="img/csv.png" width="24"></p:graphicImage>
+                    <p:dataExporter type="csv" target="tblEmpleados" fileName="Empleados" />
+                </h:commandLink>
+
+                <h:commandLink>
+                	<p:graphicImage name="img/xml.png" width="24"></p:graphicImage>
+                    <p:dataExporter type="xml" target="tblEmpleados" fileName="products"/>
+                </h:commandLink>
+
+            </div>
+	            
+	            </f:facet>                	                 
+	            
+	                 
+	      		<p:column headerText="Name" sortBy="#{empleado.name}" filterBy="#{empleado.name}">
+	      			<h:outputText value="#{empleado.name}"></h:outputText>
+	      		</p:column>
+	      		<p:column headerText="First Name">   			
+	      			<h:outputText value="#{empleado.firstName}"></h:outputText>
+	      		</p:column>
+	      		<p:column headerText="Last Name">
+	      			<h:outputText value="#{empleado.lastName}"></h:outputText>
+	      		</p:column>
+	      		<p:column headerText="Post">
+	      			<h:outputText value="#{empleado.post}"></h:outputText>
+	      		</p:column>
+	      		<p:column headerText="Status">
+	      			<h:outputText value="HABILITADO" rendered="#{empleado.status}"></h:outputText>
+	      			<h:outputText value="INHABILITADO" rendered="#{!empleado.status}"></h:outputText>
+	      		</p:column>
+	      	</p:dataTable>
+      	</h:form> 
       </h:body>
 </html>

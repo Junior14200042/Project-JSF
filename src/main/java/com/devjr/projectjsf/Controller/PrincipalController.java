@@ -16,6 +16,8 @@ public class PrincipalController {
 	
 	private List<Empleado> empleados;
 	
+	private List<Empleado> empleadosFilter;
+	
 	private EmpleadoService es= new EmpleadoService();
 	
 	@PostConstruct
@@ -23,7 +25,6 @@ public class PrincipalController {
 		this.consultarEmpleados();
 		
 	}
-	
 	public void consultarEmpleados() {
 		this.empleados=this.es.consultarEmpleado();
 	}
@@ -35,5 +36,13 @@ public class PrincipalController {
 	public void setEmpleados(List<Empleado> empleados) {
 		this.empleados = empleados;
 	}
+	public List<Empleado> getEmpleadosFilter() {
+		return empleadosFilter;
+	}
+	public void setEmpleadosFilter(List<Empleado> empleadosFilter) {
+		this.empleadosFilter = empleadosFilter;
+	}
+	
+	
 
 }
